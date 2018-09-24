@@ -37,30 +37,24 @@
 // It will transform an array of numbers into an array of valid objects.
 let testingTransform = function (array) {
   let transform = [];
-
   for (let i = 0; i < array.length; i++) {
     transform.push({
       value: array[i],
       i: i
     });
   }
-
   return transform;
 };
 
-let insertionSort = function (array) {
-  if (array) { //check if array exists
-    for (let i = 1; i < array.length - 1; i++) { //iterate through array
-      for (let j = 0; j < i; j++) {
-        if(array[i].value =< array[j].value) {
-          let temp = array[i]; //save current value
-          array.splice(j, 0, temp[0]);
-        }
-      }
+const insertionSort = (array) => {
+  for (let i = 0; i < array.length - 1; i++) { //iterate through array
+    let val = array[i]
+    let hole = i
+    while (hole && val < array[hole - 1]) {
+      array[hole] = array[hole-1]
+      hole -= 1;
     }
+    array[hole] = val;
   }
-}
   return array;
 };
-
-console.log(insertionSort([{value: 2}, {value: 1}, {value: 3}]))
