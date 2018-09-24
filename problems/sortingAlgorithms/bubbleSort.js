@@ -34,15 +34,15 @@
 
 let bubbleSort = function(array) {
   if(array){
-    for (var i = 0; i < array.length -1; i++){
-      let hasSwapped = false;
-      array.forEach((el, i, arr) => {
-        if(arr[i+1] && el > arr[i + 1]) {
-          swap(array, i, i + 1)
+    let hasSwapped = true;
+    for (var i = 0; i < array.length-1 && hasSwapped === true; i++){
+      hasSwapped = false
+      for (let j = 0; j < array.length-1-i; j++) {
+        if(array[j] > array[j + 1]) {
           hasSwapped = true;
+          swap(array, j, j+1)
         }
-      });
-      if(!hasSwapped) return array
+      }
     }
   }
   return array;
@@ -50,9 +50,9 @@ let bubbleSort = function(array) {
 
 let swap = function(arr, index1, index2) {
   let temp = arr[index1];
-  let temp2 = arr[index2];
+  arr[index1] = arr[index2]
   arr[index2] = temp;
-  arr[index1] = temp2;
+  return arr
 }
 
 //time complexity = O(n^2)
