@@ -95,45 +95,18 @@
  *
  */
 
-
-
-
-function isSorted(array) {
-  for (var i = 0; i < array.length - 1; i++) {
-    if (array[i] > array[i + 1]) {
-      return false;
-    }
-  }
-  return true;
-}
-
-function swap(arr, index1, index2) {
-  let temp = arr[index1];
-  arr[index2] = arr[index1];
-  arr[index1] = temp;
-}
-
-function mergeArr(arr1, arr2) {
-  return [...arr1, ...arr2]
-}
-
-function sort(left, right){
-  let output = [];
-  let leftIdx = 0;
-  let rightIdx = 0;
+const merge = (left, right) => {
+  let output = [], leftIdx = 0, rightIdx = 0;
   while(leftIdx < left.length && rightIdx < right.length) {
     if(left[leftIdx] < right[rightIdx]) {
-      output.push(left[leftIdx]);
-      leftIdx++;
-    }
-    else {
-      output.push(right[rightIdx]);
-      rightIdx++;
+      output.push(left[leftIdx++]);
+    } else {
+      output.push(right[rightIdx++]);
     }
   }
-  return [...output, ...left.slice(leftIdx), ...right.slice(rightIdx)];
+  let remaining = leftIdx === left.length ? right.slice(rightIdx) : left.slice(leftIdx)
+  return [...output, ...remaining];
 }
-
 
 var mergeSort = function (array) {
   if (array.length <= 1) { return array; }
@@ -142,60 +115,3 @@ var mergeSort = function (array) {
   var right = array.slice(half);
   return merge(mergeSort(left), mergeSort(right));
 }
-
-var merge = function (left, right) {
-  var i = 0, j = 0, result = [];
-  while( i < left.length && j < right.length) {
-    if(left[i] <= right[j]){
-      result.push(left[i++])
-    } else {
-      result.push(right[j++])
-    }
-  }
-  var remaining = i === left.legnth ? right.slice(j) : left.slice(i);
-  return result.concat(remaining);
-}
-// console.log(mergeSort([5,4,2,3,6,1]));
-// let mergeSort = function (array) {
-//   let output = [];
-  
-  // let recurse = function(array) {
-  //   if (array.length === 1){
-  //     return array;
-  //   }
-  //   //[5,3,4,2,1]
-  //   let mid = Math.floor(array.length /2)
-  //   let left =  array.slice(0, mid); //[5,3]
-  //   let right = array.slice(mid); //[4,2,1]
-  //   let leftIdx = 0;
-  //   let rightIdx = 0;
-  //   while(leftIdx < left.length || rightIdx < right.length){
-
-  //   }
-  //   recurse(left);
-  //   recurse(right);
-
-  //   mergeArr(left , right);
-  // }
-  
-  // for (var i = 0; i < splitArr.length - 1; i += 2) {
-  //   let subArr = 
-  //   let
-  //   if(splitArr.length % 2 === 1){
-      
-  //   }
-  //   subArr.forEach((el, i, a) => {
-  //     if (el > a[i + 1]) {
-  //       swap(a, i + 1, i)
-  //     }
-  //   })
-  //   output.push(...subArr);
-  // }
-  // mergeSort(output);
-  //spread arr
-  // return output;
-// };
-
-// console.log(mergeSort([5,2,3,1,6]))
-// let x = Math.floor(5);
-// x;
