@@ -2,12 +2,12 @@ class Stack {
   constructor() {
     this.storage = [];
     this.counter = 0;
-    }
-    push(val) {
-      this.storage.push(val);
-      this.counter++;
-    }
-    pop() {
+  }
+  push(val) {
+    this.storage.push(val);
+    this.counter++;
+  }
+  pop() {
     this.counter--;
     return this.storage.splice(-1);
   }
