@@ -14,16 +14,21 @@
 
 class Stack {
   constructor() {
-    this.storage = []
+    this.stack = []
     this.size = 0
   }
   push(val) {
     this.size++;
-    this.storage.push(val)
+    this.stack.push(val)
   }
   pop() {
-    this.size--;
-    return this.storage.splice(this.storage.length - 1, 0);
+    if(this.stack.length === 0) {
+      throw new Error('Popping from empty stack');
+    }
+    if (this.stack.length > 0) {
+      this.size--;
+      return this.stack.splice(this.stack.length - 1, 1)[0];
+    }
   }
   size() {
     return this.size;
@@ -32,13 +37,27 @@ class Stack {
     return this.size === 0
   }
   peek() {
-    return this.storage[this.size - 1];
+    return this.stack[this.size - 1];
   }
 }
 
-class MultipleStacks extends Stack {
+class SetOfStacks extends Stack {
   constructor(capacity) {
+    super();
     this.capacity = capacity;
-    this.stacks = [];
+    this.stacks = [new Stack];
+  }
+  push(val) {
+    if (this.stacks[this.stacks.length - 1].size === this.capacity) {
+      this.stacks.push(new Stack)
+    }
+    this.stacks[this.stacks.length - 1].push(val);
+    this.size++;
+  }
+  pop() {
+    if (this.stacks.length > 1 && this.stacks[this.stacks.length - 1].size === 0) {
+      this.stacks.splice(this.stacks.length - 1, 1);
+    };
+    return this.stacks[this.stacks.length - 1].pop();
   }
 }
