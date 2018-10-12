@@ -19,6 +19,12 @@ class Graph {
     }
     this.nodes[val] = {};
   }
+  findEdges(node) {
+    if(!this.nodes[node]) {
+      throw new Error('Node does not exist');
+    }
+    return this.nodes[node];
+  }
   hasEdge(node, edge) {
     if(!this.nodes[node]) {
       return false;
@@ -46,3 +52,5 @@ class Graph {
     }
   }
 }
+
+module.exports = Graph;
