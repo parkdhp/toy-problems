@@ -1,0 +1,23 @@
+{
+  "name": "toy-problems",
+  "version": "1.0.0",
+  "description": "Daily toy problems for practice",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/parkdhp/toy-problems.git"
+  },
+  "author": "Peter Park",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/parkdhp/toy-problems/issues"
+  },
+  "homepage": "https://github.com/parkdhp/toy-problems#readme",
+  "devDependencies": {
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0"
+  }
+}
