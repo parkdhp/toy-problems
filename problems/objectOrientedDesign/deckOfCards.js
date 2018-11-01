@@ -60,3 +60,16 @@ class Dealer {
     this.hand.push(card);
   }
 }
+
+class Player {
+  constructor() {
+    this.hand = [];
+  }
+  receiveCard(card) {
+    this.hand.push(card);
+  }
+  discardHand() {
+    this.hand = [];
+  }
+}
+
