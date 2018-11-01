@@ -1,5 +1,5 @@
 /**Deck of Cards
- * Design the dats structures for a generic deck of cards. Explain how you
+ * Design the data structures for a generic deck of cards. Explain how you
  * would subclass the data structures to implement blackjack.
  */
 
@@ -73,3 +73,53 @@ class Player {
   }
 }
 
+class Table {
+  constructor() {
+    this.dealer = new Dealer;
+    this.players = [];
+  }
+  join(player) {
+    if (this.players.length > 5) {
+      console.error('Table is full.');
+    } else if (this.players.indexOf(player) > -1) {
+      console.error('Player is already in game.');
+    } else {
+      this.players.push(player);
+    }
+  }
+  runGame() {
+    const dealer = this.dealer;
+    const players = this.players;
+
+    if (!players.length) {
+      console.error('Insufficient number of players.');
+    } else {
+      console.log('Starting round of blackjack');
+      dealer.shuffleCards();
+      for (let i = 0; i < 2; i++) {
+        players.forEach(player => {
+          player.receiveCard(dealer.dealCard());
+        });
+        dealer.receiveCard(dealer.dealCard());
+      }
+      console.log('dealer hand', dealer.hand.map((card) => card.value));
+      players.forEach((player, i) => {
+        console.log(`Player #${i} hand`, player.hand.map((card) => card.value));
+      });
+    }
+  }
+}
+
+const table = new Table();
+const peter = new Player();
+const david = new Player();
+const edward = new Player();
+const mitch = new Player();
+
+table.join(peter);
+table.join(david);
+table.join(edward);
+table.join(mitch);
+
+//deals first pair of hands
+table.runGame();
