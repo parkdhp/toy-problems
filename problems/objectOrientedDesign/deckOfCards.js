@@ -41,7 +41,13 @@ class Deck {
     }
   }
   deal() {
-    this.deck = new Deck();
+    return this.cards.pop();
+  }
+}
+
+class Dealer {
+  constructor() {
+    this.deck = new Deck;
     this.hand = [];
   }
 }
