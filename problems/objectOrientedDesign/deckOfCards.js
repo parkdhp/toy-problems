@@ -50,4 +50,13 @@ class Dealer {
     this.deck = new Deck;
     this.hand = [];
   }
+  shuffleCards() {
+    this.deck.shuffle();
+  }
+  dealCard() {
+    return this.deck.deal();
+  }
+  receiveCard(card) {
+    this.hand.push(card);
+  }
 }
