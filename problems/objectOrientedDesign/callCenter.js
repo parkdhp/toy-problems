@@ -7,3 +7,17 @@
  * available employee.
  */
 
+const Queue = require('../stacksAndQueues/queue');
+
+class Employee {
+  constructor(name) {
+    this.name = name;
+  }
+  dispatch(call, queue) {
+    let context = this;
+    setTimeout(() => {
+      queue.enqueue(context);
+      console.log(`Adding ${context.name} back to queue`);
+    }, call.time);
+  }
+}
