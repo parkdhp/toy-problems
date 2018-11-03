@@ -21,3 +21,9 @@ class Employee {
     }, call.time);
   }
 }
+
+class Call {
+  constructor(time) {
+    this.time = time;
+  }
+}
