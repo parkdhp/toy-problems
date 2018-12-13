@@ -35,3 +35,26 @@ let powerSet = function (str) {
   }
   return result;
 };
+
+/** Power Set
+ * Write a method to return all subsets of a set.
+ */
+
+const returnSubset = (set) => {
+  const output = new Set;
+  let recurse = (currSet, remainingSet) => {
+    if ( remainingSet.size() ) {
+      currSet.add(remainingSet[])
+    }
+  }
+  return output;
+}
+
+
+let setA = new Set([15,15,2,3,4,5]);
+console.log(returnSubset(setA));
+
+console.log(setA);
+console.log('keys', setA.keys());
+console.log('entries', setA.entries());
+console.log('values', setA.values());
