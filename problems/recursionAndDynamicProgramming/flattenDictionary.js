@@ -30,7 +30,7 @@
  *         }
  */
 
-function flattenDictionary(dict) {
+const flattenDictionary = dict => {
   const output = {};
   for (const key in dict) {
     if (typeof dict[key] === 'object') {
@@ -49,7 +49,7 @@ function flattenDictionary(dict) {
     }
   }
   return output;
-}
+};
 
 console.log(
   flattenDictionary({
