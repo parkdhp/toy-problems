@@ -12,17 +12,23 @@
 
 const binarySearch = (array, target, start, end) => {
   start = start || 0;
-  end = end || array.length;
-  if(start === end) {
+  end = end || array.length - 1;
+  if (start > end) {
     return null;
   }
-  let mid = Math.floor((end - start) / 2) + start;
+  const mid = Math.floor((end - start) / 2) + start;
+  console.log(mid);
+  console.log(start);
+  console.log(end);
 
-  if(array[mid] === target) {
+  if (array[mid] === target) {
     return mid;
-  } else if (target > array[mid]) {
-    return binarySearch(array, target, mid, end)
-  } else {
-    return binarySearch(array, target, start, mid);
   }
-}
+  if (array[mid] > target) {
+    return binarySearch(array, target, start, mid - 1);
+  }
+  return binarySearch(array, target, mid + 1, end);
+};
+
+console.log(binarySearch([1, 2, 3, 4, 5], 4) === 3);
+console.log(binarySearch([1, 2, 3, 4, 5], 8));
