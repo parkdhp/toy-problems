@@ -3,24 +3,34 @@
  * write code to calculate the number of ways of representing n cents.
  */
 
-const coins = (total) => {
-  const coinsArray = [1, 5, 25, 100];
-  let counter = 0;
-  const recurse = (index, remainder) => {
-    const coin = coinsArray[index];
-    if (index === 0) {
-      remainder % coin === 0 && counter++;
-      return;
-    }
-    while (remainder >= 0) {
-      recurse(index - 1, remainder);
-      remainder -= coin;
-    }
-  };
-  recurse(coinsArray.length - 1, total);
-  return counter;
+// DP method using memoization
+const makeChangeHelper = (coins, money, index, memo) => {
+  let amountWithCoin = 0;
+  let ways = 0;
+  if (money === 0) {
+    return 1;
+  }
+  if (index >= coins.length) {
+    return 0;
+  }
+  const key = `${money}-${index}`;
+  if (memo[key]) {
+    return memo[key];
+  }
+  while (amountWithCoin <= money) {
+    const remaining = money - amountWithCoin;
+    ways += makeChangeHelper(coins, remaining, index + 1, memo);
+    amountWithCoin += coins[index];
+  }
+  memo[key] = ways;
+  return ways;
 };
 
-console.log(coins(50));
-console.log(coins(25));
-console.log(coins(5));
+const makeChange = (coins, money) => makeChangeHelper(coins, money, 0, {});
+
+const coinsArray = [25, 10, 5, 1];
+
+console.log(makeChange(coinsArray, 5));
+console.log(makeChange(coinsArray, 25));
+console.log(makeChange(coinsArray, 50));
+console.log(makeChange(coinsArray, 100));
