@@ -28,3 +28,36 @@ const canJump = arr => {
 
 console.log(canJump([2, 3, 1, 1, 4]));
 console.log(canJump([3, 2, 1, 0, 4]));
+
+/** Jump Game II
+ * Assuming you can always reach the last index, your goal is the reach the last index in the minimum number
+ * of jumps.
+ *
+ * EXAMPLE
+ * Input: [2,3,1,1,4]
+ * Output: 2
+ * The minimum number of jumps to reach the last index is 2. Jump 1 step from index 0 to 1, then 3 steps to
+ * the last index.
+ */
+
+const canJump2 = arr => {
+  let currMax = 0;
+  let nJumps = 0;
+  let i = 0;
+  const n = arr.length;
+
+  while (currMax < n - 1) {
+    const lastMax = currMax;
+    for (; i <= lastMax; i++) {
+      currMax = Math.max(currMax, i + arr[i]);
+    }
+    nJumps++;
+    if (lastMax === currMax) {
+      return -1;
+    }
+  }
+  return nJumps;
+};
+
+console.log(canJump2([2, 3, 1, 1, 4]));
+console.log(canJump2([5, 2, 1, 1, 4]));
