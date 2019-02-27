@@ -52,16 +52,17 @@ const findMinKeyWithinTree = function(inputNode) {
 };
 
 BinarySearchTree.prototype.findInOrderSuccessor = function(inputNode) {
-  let currNode = inputNode;
   if (inputNode.right) {
     return findMinKeyWithinTree(inputNode.right);
-  } else {
-    while (currNode.parent.key < inputNode.key) {
-      currNode = currNode.parent;
-    }
   }
-  if (currNode === inputNode) return null;
-  return currNode;
+  let ancestor = inputNode.parent;
+  let child = inputNode;
+
+  while (ancestor != null && child === ancestor.right) {
+    child = ancestor;
+    ancestor = child.parent;
+  }
+  return ancestor;
 };
 
 // Creates a new node by a key and inserts it to the BST
