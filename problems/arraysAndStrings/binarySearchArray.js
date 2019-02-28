@@ -17,9 +17,6 @@ const binarySearch = (array, target, start, end) => {
     return null;
   }
   const mid = Math.floor((end - start) / 2) + start;
-  console.log(mid);
-  console.log(start);
-  console.log(end);
 
   if (array[mid] === target) {
     return mid;
