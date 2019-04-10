@@ -58,6 +58,42 @@ const findKthSmallest = (tree, k) => {
   return res[k - 1];
 };
 
+// morris traversal method
+// time complexity: O(n)
+// space complexity: O(1)
+const findKthSmallest2 = (tree, k) => {
+  let count = 0;
+  let ksmall = -Infinity;
+  let curr = tree;
+
+  while (curr !== null) {
+    if (curr.left === null) {
+      count += 1;
+      if (count === k) {
+        ksmall = curr.value;
+      }
+      curr = curr.right;
+    } else {
+      let pre = curr.left;
+      while (pre.right !== null && pre.right !== curr) {
+        pre = pre.right;
+      }
+      if (pre.right === null) {
+        pre.right = curr;
+        curr = curr.left;
+      } else {
+        pre.right = null;
+        count += 1;
+        if (count === k) {
+          ksmall = curr.value;
+        }
+        curr = curr.right;
+      }
+    }
+  }
+  return ksmall;
+};
+
 const tree = new Node(5);
 tree.left = new Node(3);
 tree.right = new Node(7);
@@ -67,3 +103,4 @@ tree.right.left = new Node(6);
 tree.right.right = new Node(8);
 
 console.log(findKthSmallest(tree, 1));
+console.log(findKthSmallest2(tree, 1));
