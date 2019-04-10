@@ -36,7 +36,7 @@ class Node {
 }
 
 // recursive method
-// time complexity: O(n)
+// time complexity: O(n log n)
 // space complexity: O(n)
 const findKthSmallest = (tree, k) => {
   if (!tree) {
